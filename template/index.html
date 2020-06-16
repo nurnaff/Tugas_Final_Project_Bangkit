@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <title>Image Classification Cancer | Django Deep Learning API</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script type="text/javascript" src="{% static 'javascript/javascript.js' %}"></script>
+</head>
+    <body style="background-color:white">
+        {% block content %}
+        
+        <div class="jumbotron text-center" style="background-color:white">
+            <h2><a href="/index/">Upload Image for Classification</a></h2>
+        </div>
+        <form method="POST" enctype="multipart/form-data" action="predictImage">
+        
+        {% csrf_token %}
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4 text-center">
+              <label for="fname">Upload your image file: </label>
+              <br>
+              <input name="filePath" type="file">
+            </div>
+          </div>
+        </div>
+         <div class="jumbotron text-center" style="background-color:white">
+             <div class="container">
+               <div class="row">
+                  <div class="col-sm-12 text-center">
+                  <input type="submit" value="Submit">
+                  </div>
+               </div>
+             </div>
+         </div>
+         <br>
+
+         <h2>The Classification of the image is {{predictedLabel}}</h2>
+         <br>
+         <img src={{filePathName}} alt='imagename'>
+         {{filePathName}}
+
+        </form>
+
+        {% endblock %}
+         <div class="container">
+             <div class="center">
+  
+             </div>
+         </div>
+    </body>
+</html>
